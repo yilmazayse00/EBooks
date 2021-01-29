@@ -11,17 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EBooks">
-
-        <activity
-            android:name=".SplashScreen"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".dbScreens.SignupScreen" android:parentActivityName=".dbScreens.LoginScreen"></activity>
+        <activity android:name=".dbScreens.LoginScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/SplashTheme"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".BookDetailsScreen"/>
+        <activity
+            android:name=".BookDetailsScreen"
+            android:parentActivityName=".MainActivity" />
     </application>
+
 </manifest>

@@ -1,8 +1,8 @@
 package com.example.ebooks;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;
@@ -18,7 +18,9 @@ public class BookDetailsScreen extends AppCompatActivity {
         String bookPdf = bundle.getString("BookId");
         String bookTitle = bundle.getString("BookTitle");
 
-        getSupportActionBar().setTitle(bookTitle);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(bookTitle);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         PDFView pdfView = findViewById(R.id.pdfView);
         pdfView.fromAsset(bookPdf+".pdf")

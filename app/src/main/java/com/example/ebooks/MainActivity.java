@@ -1,6 +1,8 @@
 package com.example.ebooks;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +13,9 @@ import com.example.ebooks.model.Book;
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageView fav;
+    TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        fav = findViewById(R.id.imageView2);
 
         Book[] bookData = new Book[]{
                 new Book("greatGatsby","Great Gatsby", "F. Scott Fitzgerald",R.drawable.greatgatsby),
