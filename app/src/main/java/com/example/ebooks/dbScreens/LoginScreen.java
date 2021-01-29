@@ -42,23 +42,30 @@ public class LoginScreen extends AppCompatActivity {
         }
     }
 
-    public void signIn_click(View view){
+    public void signIn_click(View view) {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
-
-        firebaseAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(LoginScreen.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (email.matches("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginScreen.this);
+            builder.setTitle("Hata Mesajı");
+            builder.setMessage("E-mail alanı boş bırakılamaz!");
+            builder.setNegativeButton("Tamam", null);
+            builder.show();
+        } else {
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(LoginScreen.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     public void signUp_click(View view){

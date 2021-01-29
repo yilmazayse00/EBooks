@@ -1,6 +1,7 @@
 package com.example.ebooks.dbScreens;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,19 +32,20 @@ public class SignupScreen extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Kayıt Ekranı");
 
     }
 
-    public void signUpClicked(View view){
+    public void signUpClicked(View view) {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
-//        if (email.matches("")){
-//            AlertDialog.Builder builder = new AlertDialog.Builder(LoginScreen.this);
-//            builder.setTitle("Hata Mesajı");
-//            builder.setMessage("E-mail alanı boş bırakılamaz!");
-//            builder.setNegativeButton("Tamam", null);
-//            builder.show();
-//        }
+        if (email.matches("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SignupScreen.this);
+            builder.setTitle("Hata Mesajı");
+            builder.setMessage("E-mail alanı boş bırakılamaz!");
+            builder.setNegativeButton("Tamam", null);
+            builder.show();
+        } else {
 //        else if (password.matches("")){
 //            AlertDialog.Builder builder = new AlertDialog.Builder(LoginScreen.this);
 //            builder.setTitle("Hata Mesajı");
@@ -51,14 +53,14 @@ public class SignupScreen extends AppCompatActivity {
 //            builder.setNegativeButton("Tamam", null);
 //            builder.show();
 //        }
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }).addOnFailureListener(e -> Log.v("Error",e.getLocalizedMessage()));
+            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }).addOnFailureListener(e -> Log.v("Error", e.getLocalizedMessage()));
+        }
     }
-
 }
