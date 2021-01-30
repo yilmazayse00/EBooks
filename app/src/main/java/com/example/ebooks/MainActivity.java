@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +17,19 @@ import com.example.ebooks.adapter.BookAdapter;
 import com.example.ebooks.dbScreens.LoginScreen;
 import com.example.ebooks.model.Book;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
-    ImageView fav;
     private FirebaseAuth firebaseAuth;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,9 +61,13 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        fav = findViewById(R.id.imageView2);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
+
 
         Book[] bookData = new Book[]{
                 new Book("greatGatsby","Great Gatsby", "F. Scott Fitzgerald",R.drawable.greatgatsby),

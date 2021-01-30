@@ -1,9 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-
 }
-
 
 android {
     compileSdkVersion 30
@@ -51,5 +49,11 @@ dependencies {
 //    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 //    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
+
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
 apply plugin: 'com.google.gms.google-services'

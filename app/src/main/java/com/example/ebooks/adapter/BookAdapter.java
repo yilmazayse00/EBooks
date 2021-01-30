@@ -42,19 +42,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         holder.bookName.setText(bookDataList.getBookName());
         holder.bookAuth.setText(bookDataList.getAuthorName());
         holder.bookImage.setImageResource(bookDataList.getBookImage());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        holder.itemView.setOnClickListener(v -> {
 
-                String bId = bookList[position].getBookId();
-                String bTitle = bookList[position].getBookName();
-                Bundle bundle = new Bundle();
-                bundle.putString("BookId", bId);
-                bundle.putString("BookTitle", bTitle);
-                Intent intent = new Intent(context, BookDetailsScreen.class);
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-            }
+            String bId = bookList[position].getBookId();
+            String bTitle = bookList[position].getBookName();
+            Bundle bundle = new Bundle();
+            bundle.putString("BookId", bId);
+            bundle.putString("BookTitle", bTitle);
+            Intent intent = new Intent(context, BookDetailsScreen.class);
+            intent.putExtras(bundle);
+            context.startActivity(intent);
         });
     }
 
